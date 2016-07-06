@@ -17,6 +17,9 @@ badtimer1=0
 badguys=[[640,100]]
 healthvalue=194
 
+#fps counter
+clock = pygame.time.Clock()
+
 # 3 load images
 player = pygame.image.load("resources/images/dude.png")
 grass = pygame.image.load("resources/images/grass.png")
@@ -27,6 +30,11 @@ badguyimg=badguyimg1
 
 # 4 looop
 while 1:
+
+	#fps counter
+	clock.tick()
+	print"fps:", clock.get_fps()	
+
 	badtimer-=1
 	# 5 clear screen
 	screen.fill(0)
@@ -86,7 +94,10 @@ while 1:
 			bullrect.top=bullet[2]
 			if badrect.colliderect(bullrect):
 				acc[0]+=1
-				badguys.pop(index)
+				try:
+					badguys.pop(index)
+				except IndexError:
+					print "Index errors"
 				arrows.pop(index1)
 			index+=1
 		# 6.3.3 next bad goi
